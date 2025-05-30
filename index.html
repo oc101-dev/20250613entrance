@@ -17,7 +17,11 @@
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
 </head>
 <body>
-  <a-scene vr-mode-ui="enabled: true">
+  <a-scene>
+    <!-- Controller -->
+    <a-entity laser-controls="hand: left" raycaster="objects: .collidable; far: 5"></a-entity>
+    <a-entity laser-controls="hand: right" raycaster="objects: .collidable; far: 5"></a-entity>
+
     <!-- 最初は非表示(visible="false")にしておく -->
     <a-entity
       id="myModel"
@@ -29,12 +33,6 @@
     
     <!-- 360度画像の背景 -->
     <a-sky id="sky" src="R0010034.JPG" rotation="0 0 0"></a-sky>
-
-    <!-- <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
-    <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ccffcc"></a-entity> -->
-<!-- Controller -->
-<a-entity laser-controls="hand: left" raycaster="objects: .collidable; far: 5"></a-entity>
-<a-entity laser-controls="hand: right" raycaster="objects: .collidable; far: 5"></a-entity>
     
     <!-- 音声エンティティ -->
     <a-entity id="bgm" sound="src: url(bgm01.mp3); autoplay: false; loop: true;"></a-entity>
