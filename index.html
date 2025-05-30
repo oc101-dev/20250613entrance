@@ -22,7 +22,7 @@
     <a-entity
       id="myModel"
       gltf-model="./zombie.glb"
-      position="0 0 -5"
+      position="0 1 -5"
       scale="1.5 1.5 1.5"
       visible="false"
     ></a-entity>
@@ -97,9 +97,9 @@
           //アニメーション1を設定（anime01 , 繰り返し回数2回  再生速度1.15倍）
           modelEl.setAttribute('animation-mixer', {clip: 'anime01',loop: 'false',repetitions: '2',timeScale: '1.15',clampWhenFinished: 'true'});
           //アニメーション1の初期表示位置の設定
-          modelEl.setAttribute('position', '0 -1.5 -5');
-          //アニメーション1で移動させる先の座標(0,-1.5,-1)と移動時間の設定8.0秒
-          modelEl.setAttribute('animation__position', 'property: position; to: 0 -1.5 -2; dur: 8000; easing: easeInSine; loop: false');          
+          modelEl.setAttribute('position', '0 -0.5 -5');
+          //アニメーション1で移動させる先の座標(0,-0.5,-1)と移動時間の設定8.0秒
+          modelEl.setAttribute('animation__position', 'property: position; to: 0 -0.5 -2; dur: 8000; easing: easeInSine; loop: false');          
 
           // sound01を再生
           sound1El.components.sound.playSound();
