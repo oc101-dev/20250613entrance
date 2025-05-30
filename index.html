@@ -76,6 +76,8 @@
       
       // クリック/タップでスタート
       document.addEventListener('click', startExperience);
+      sceneEl.addEventListener('triggerdown', startExperience);
+
       
       function startExperience() {
         if (hasStarted) return; // 二重実行防止
@@ -83,6 +85,8 @@
         
         // クリックイベントリスナーを削除
         document.removeEventListener('click', startExperience);
+        sceneEl.removeEventListener('triggerdown', startExperience);
+
         
         console.log('ユーザーアクションを検出しました。BGMを開始します。');
         bgmEl.components.sound.playSound();
