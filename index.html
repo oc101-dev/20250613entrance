@@ -1,11 +1,11 @@
 <!--
 ページ読込直後は、glbモデル非表示。
 クリック・タップ・VRゴーグルのトリガーでstartExperience発生＆BGM再生。
-10秒後にanime01を1回再生しながらモデル表示（移動なし）。
-anime01終了後、anime02を2回再生しながら(0,-0.5,-6)→(0,-0.5,-2)へ移動＆sound02再生。
+BGMを3秒再生したらモデル表示＆anime01を3.966秒だけ再生（移動なし）。
+anime01を3.966秒表示したら、anime02を2回再生しながら(0,-0.8,-6)→(0,-0.8,-2)へ移動＆sound02再生。
 anime02終了後、anime03を3回再生しながらsound03再生（移動なし）。
 sound03を17.5秒再生後、anime04を3回再生しながらsound04再生（移動なし）。
-anime04再生後、クリック・タップ・triggerdownで https://seiei.ac.jp/ へ遷移。
+anime04再生後、https://seiei.ac.jp/ へ遷移。
 -->
 <!DOCTYPE html>
 <html>
@@ -26,7 +26,7 @@ anime04再生後、クリック・タップ・triggerdownで https://seiei.ac.jp
     <a-entity
       id="myModel"
       gltf-model="./EntranceGuide.glb"
-      position="0 1 -5"
+      position="0,-0.8,-6"
       scale="1.5 1.5 1.5"
       visible="false"
     ></a-entity>
@@ -71,6 +71,7 @@ anime04再生後、クリック・タップ・triggerdownで https://seiei.ac.jp
 
       modelEl.addEventListener('model-loaded', function () {
         console.log('モデルが正常に読み込まれました（非表示状態）');
+        console.log('version 1.0.6');
       });
 
       document.addEventListener('click', startExperience, { once: true });
@@ -83,11 +84,11 @@ anime04再生後、クリック・タップ・triggerdownで https://seiei.ac.jp
         console.log('ユーザーアクションを検出しました。BGMを開始します。');
         bgmEl.components.sound.playSound();
 
-        // 10秒後にモデル表示＆anime01開始
+        // 3秒後にモデル表示＆anime01開始
         setTimeout(function() {
-          console.log('10秒経過。モデル表示＆anime01開始');
+          console.log('3秒経過。モデル表示＆anime01開始');
           modelEl.setAttribute('visible', true);
-          modelEl.setAttribute('position', '0 -0.5 -6');
+          modelEl.setAttribute('position', '0 -0.8 -6');
           modelEl.setAttribute('animation-mixer', {
             clip: 'anime01',
             loop: 'false',
@@ -96,7 +97,7 @@ anime04再生後、クリック・タップ・triggerdownで https://seiei.ac.jp
             clampWhenFinished: 'true'
           });
 
-          // anime01(1回=9.933秒)終了後にanime02へ
+          // anime01を3.966秒表示したらanime02へ
           setTimeout(function () {
             console.log('anime02開始（2回繰り返し＆移動＆sound02再生）');
             modelEl.setAttribute('animation-mixer', {
@@ -106,8 +107,8 @@ anime04再生後、クリック・タップ・triggerdownで https://seiei.ac.jp
               timeScale: '1',
               clampWhenFinished: 'true'
             });
-            // (0,-0.5,-6)→(0,-0.5,-2)へ移動
-            modelEl.setAttribute('animation__position', 'property: position; to: 0 -0.5 -2; dur: 9200; easing: easeInSine; loop: false');
+            // (0,-0.8,-6)→(0,-0.8,-2)へ移動
+            modelEl.setAttribute('animation__position', 'property: position; to: 0 -0.8 -2; dur: 9200; easing: easeInSine; loop: false');
             sound2El.components.sound.playSound();
 
             // anime02(2回=4.6秒×2=9.2秒)終了後にanime03へ
@@ -136,19 +137,14 @@ anime04再生後、クリック・タップ・triggerdownで https://seiei.ac.jp
                 });
                 sound4El.components.sound.playSound();
 
-                // anime04(3回分)終了後にクリック/タップ/triggerdownで遷移
+                // anime04(3回分)終了後に自動的にページ遷移
                 setTimeout(function () {
-                  function goToObake() {
-                    window.location.href = 'https://seiei.ac.jp/';
-                  }
-                  modelEl.addEventListener('click', goToObake, { once: true });
-                  modelEl.addEventListener('touchstart', goToObake, { once: true });
-                  modelEl.addEventListener('triggerdown', goToObake, { once: true });
+                  window.location.href = 'https://seiei.ac.jp/';
                 }, 3167 * 3); // anime04(3回分)
               }, 17500); // sound03の再生時間
             }, 4600 * 2); // anime02(2回分)
-          }, 9933); // anime01(1回分)
-        }, 10000); // BGM10秒後
+          }, 3966); // anime01を3.966秒表示
+        }, 3000); // BGM3秒後
       }
     });
   </script>
