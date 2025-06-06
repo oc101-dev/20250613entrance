@@ -4,8 +4,8 @@
 BGMを3秒再生したらモデル表示＆anime01を3.966秒だけ再生（移動なし）。
 anime01を3.966秒表示したら、anime02を2回再生しながら(0,-0.8,-6)→(0,-0.8,-2)へ移動＆sound02再生。
 anime02終了後、anime03を3回再生しながらsound03再生（移動なし）。
-sound03を17.5秒再生後、anime04を3回再生しながらsound04再生（移動なし）。
-anime04再生後、https://seiei.ac.jp/ へ遷移。
+sound03を17.5秒再生後、anime04を2回再生しながらsound04再生（移動なし）。
+anime04再生後、https://2025.seiei.online/vr05 へ遷移。
 -->
 <!DOCTYPE html>
 <html>
@@ -124,23 +124,23 @@ anime04再生後、https://seiei.ac.jp/ へ遷移。
               });
               sound3El.components.sound.playSound();
 
-              // sound03を17.5秒再生後、anime04を3回再生しながらsound04再生
+              // sound03を17.5秒再生後、anime04を2回再生しながらsound04再生
               setTimeout(function () {
                 sound3El.components.sound.stopSound();
-                console.log('anime04開始（3回繰り返し＆sound04再生）');
+                console.log('anime04開始（2回繰り返し＆sound04再生）');
                 modelEl.setAttribute('animation-mixer', {
                   clip: 'anime04',
                   loop: 'false',
-                  repetitions: '3',
+                  repetitions: '2', // ★ここを3→2に変更
                   timeScale: '1',
                   clampWhenFinished: 'true'
                 });
                 sound4El.components.sound.playSound();
 
-                // anime04(3回分)終了後に自動的にページ遷移
+                // anime04(2回分)終了後に自動的にページ遷移
                 setTimeout(function () {
-                  window.location.href = 'https://seiei.ac.jp/';
-                }, 3167 * 3); // anime04(3回分)
+                  window.location.href = 'https://2025.seiei.online/vr05/';
+                }, 3167 * 2); // anime04(2回分)  ★ここも3→2に変更
               }, 17500); // sound03の再生時間
             }, 4600 * 2); // anime02(2回分)
           }, 3966); // anime01を3.966秒表示
