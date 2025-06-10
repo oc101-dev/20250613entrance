@@ -52,6 +52,24 @@ anime04再生後、https://2025.seiei.online/vr05 へ遷移。
   </a-scene>
   
   <script>
+    // VRモードのボタンにIDを設定
+    // A-Frameのシーン要素を取得
+    const sceneEl = document.querySelector('a-scene');
+    // シーンがロードされたときに実行されるイベントリスナーを追加
+    if (sceneEl) {
+      sceneEl.addEventListener('loaded', function () {
+        const vrButton = document.querySelector('.a-enter-vr-button');
+        if (vrButton) {
+          vrButton.id = 'vrButton';
+          console.log('VRボタンにIDが設定されました:', vrButton.id);
+        } else {
+          console.error('VRボタンが見つかりません。');
+        }
+      });
+    } else {
+      console.error('A-Frameのシーン要素 (<a-scene>) が見つかりません。');
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
       const sceneEl = document.querySelector('a-scene');
       // sceneEl.addEventListener('loaded', function () {
@@ -60,6 +78,7 @@ anime04再生後、https://2025.seiei.online/vr05 へ遷移。
       //     sceneEl.enterVR();
       //   }
       // });
+
 
       const modelEl = document.getElementById('myModel');
       const bgmEl = document.getElementById('bgm');
@@ -71,7 +90,7 @@ anime04再生後、https://2025.seiei.online/vr05 へ遷移。
 
       modelEl.addEventListener('model-loaded', function () {
         console.log('モデルが正常に読み込まれました（非表示状態）');
-        console.log('version 1.0.11');
+        console.log('version 1.0.12');
       });
 
       document.addEventListener('click', startExperience, { once: true });
