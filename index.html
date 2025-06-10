@@ -72,12 +72,12 @@ anime04再生後、https://2025.seiei.online/vr05 へ遷移。
 
     document.addEventListener('DOMContentLoaded', function () {
       const sceneEl = document.querySelector('a-scene');
-      // sceneEl.addEventListener('loaded', function () {
-      //   console.log('A-Frameシーンが読み込まれました。VRモードに切り替えます。');
-      //   if (sceneEl.enterVR) {
-      //     sceneEl.enterVR();
-      //   }
-      // });
+      sceneEl.addEventListener('loaded', function () {
+        console.log('A-Frameシーンが読み込まれました。VRモードに切り替えます。');
+        if (sceneEl.enterVR) {
+          sceneEl.enterVR();
+        }
+      });
 
 
       const modelEl = document.getElementById('myModel');
