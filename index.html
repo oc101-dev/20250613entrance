@@ -17,7 +17,7 @@ anime04再生後、https://2025.seiei.online/vr05 へ遷移。
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
 </head>
 <body>
-  <a-scene>
+  <a-scene vr-mode-ui="enabled: true">
     <!-- Controller -->
     <a-entity laser-controls="hand: left" raycaster="objects: .collidable; far: 4; color: #ffcccc"></a-entity>
     <a-entity laser-controls="hand: right" raycaster="objects: .collidable; far: 4; color: #ccffcc"></a-entity>
@@ -54,12 +54,12 @@ anime04再生後、https://2025.seiei.online/vr05 へ遷移。
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const sceneEl = document.querySelector('a-scene');
-      sceneEl.addEventListener('loaded', function () {
-        console.log('A-Frameシーンが読み込まれました。VRモードに切り替えます。');
-        if (sceneEl.enterVR) {
-          sceneEl.enterVR();
-        }
-      });
+      // sceneEl.addEventListener('loaded', function () {
+      //   console.log('A-Frameシーンが読み込まれました。VRモードに切り替えます。');
+      //   if (sceneEl.enterVR) {
+      //     sceneEl.enterVR();
+      //   }
+      // });
 
       const modelEl = document.getElementById('myModel');
       const bgmEl = document.getElementById('bgm');
