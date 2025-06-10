@@ -88,7 +88,7 @@ anime04再生後、https://2025.seiei.online/vr05 へ遷移。
         setTimeout(function() {
           console.log('3秒経過。モデル表示＆anime01開始');
           modelEl.setAttribute('visible', true);
-          modelEl.setAttribute('position', '0 -2.4 -6');
+          modelEl.setAttribute('position', '0 -2.4 -8');
           modelEl.setAttribute('animation-mixer', {
             clip: 'anime01',
             loop: 'false',
@@ -107,7 +107,7 @@ anime04再生後、https://2025.seiei.online/vr05 へ遷移。
               timeScale: '1',
               clampWhenFinished: 'true'
             });
-            // (0,-2.4,-6)→(0,-2.4,-3)へ移動
+            // (0,-2.4,-8)→(0,-2.4,-3)へ移動
             modelEl.setAttribute('animation__position', 'property: position; to: 0 -2.4 -3; dur: 9200; easing: easeInSine; loop: false');
             sound2El.components.sound.playSound();
 
