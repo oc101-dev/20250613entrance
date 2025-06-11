@@ -95,8 +95,7 @@ anime04再生後、https://2025.seiei.online/vr05 へ遷移。
         modelEl.setAttribute('position', '0 -2.4 -3');
         modelEl.setAttribute('animation-mixer', {
           clip: 'anime01',
-          loop: 'false',
-          repetitions: '1',
+          loop: 'true',
           timeScale: '1',
           clampWhenFinished: 'true'
         });
@@ -113,69 +112,39 @@ anime04再生後、https://2025.seiei.online/vr05 へ遷移。
         console.log('ユーザーアクションを検出しました。BGMを開始します。');
         bgmEl.components.sound.playSound();
 
-        // 3秒後にモデル表示＆anime01開始
+        
         setTimeout(function() {
-          // console.log('3秒経過。モデル表示＆anime01開始');
-          // modelEl.setAttribute('visible', true);
-          // modelEl.setAttribute('position', '0 -2.4 -10');
-          // modelEl.setAttribute('animation-mixer', {
-          //   clip: 'anime01',
-          //   loop: 'false',
-          //   repetitions: '1',
-          //   timeScale: '1',
-          //   clampWhenFinished: 'true'
-          // });
-
-          // anime01を3.966秒表示したらanime02へ
-          setTimeout(function () {
-            console.log('anime02開始（2回繰り返し＆移動＆sound02再生）');
+          console.log('BGM再生開始から4秒後にanime03開始');
             modelEl.setAttribute('animation-mixer', {
-              clip: 'anime02',
+              clip: 'anime03',
               loop: 'false',
-              repetitions: '2',
+              repetitions: '3',
               timeScale: '1',
               clampWhenFinished: 'true'
             });
-            // (0,-2.4,-10)→(0,-2.4,-4)へ移動
-            // modelEl.setAttribute('animation__position', 'property: position; to: 0 -2.4 -4; dur: 9200; easing: easeInSine; loop: false');
-            // sound2El.components.sound.playSound();
+            sound3El.components.sound.playSound();
+            modelEl.setAttribute('rotation', '0 -20 0');
 
-            // anime02(0.001秒)終了後にanime03へ
+            // sound03を17.5秒再生後、anime04を2回再生しながらsound04再生
             setTimeout(function () {
-              // sound2El.components.sound.stopSound();
-              console.log('anime03開始‗0.001秒');
+              sound3El.components.sound.stopSound();
+              console.log('anime04開始（2回繰り返し＆sound04再生）');
               modelEl.setAttribute('animation-mixer', {
-                clip: 'anime03',
+                clip: 'anime04',
                 loop: 'false',
-                repetitions: '3',
+                repetitions: '2', 
                 timeScale: '1',
                 clampWhenFinished: 'true'
               });
-              sound3El.components.sound.playSound();
-              modelEl.setAttribute('rotation', '0 -40 0');
+              modelEl.setAttribute('rotation', '0 0 0');
+              sound4El.components.sound.playSound();
 
-              // sound03を17.5秒再生後、anime04を2回再生しながらsound04再生
+              // anime04(2回分)終了後に自動的にページ遷移
               setTimeout(function () {
-                sound3El.components.sound.stopSound();
-                console.log('anime04開始（2回繰り返し＆sound04再生）');
-                modelEl.setAttribute('animation-mixer', {
-                  clip: 'anime04',
-                  loop: 'false',
-                  repetitions: '2', // ★ここを3→2に変更
-                  timeScale: '1',
-                  clampWhenFinished: 'true'
-                });
-                modelEl.setAttribute('rotation', '0 0 0');
-                sound4El.components.sound.playSound();
-
-                // anime04(2回分)終了後に自動的にページ遷移
-                setTimeout(function () {
-                  window.location.href = '../vr01/';
-                }, 3167 * 2 + 1500); // anime04(2回分)  ★ここも3→2に変更
-              }, 12100); // sound03の再生時間
-            }, 1); // anime02(ほぼ再生しない)
-          }, 3966); // anime01を3.966秒表示
-        }, 4000); // BGM4秒後
+                window.location.href = '../vr01/';
+              }, 3167 * 2 + 1500); // anime04(2回分 + 1.5秒　)
+            }, 12100); // sound03の再生時間
+        }, 4966); // BGM4秒後
       }
     });
   </script>
