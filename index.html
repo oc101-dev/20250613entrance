@@ -25,7 +25,7 @@ anime04再生後、https://2025.seiei.online/vr05 へ遷移。
     <!-- 最初は非表示(visible="false")にしておく -->
     <a-entity
       id="myModel"
-      gltf-model="./EntranceGuide3.glb"
+      gltf-model="./EntranceGuide4.glb"
       position="0,-2.4,-3"
       scale="1.3 1.3 1.3"
       visible="true"
@@ -94,7 +94,7 @@ anime04再生後、https://2025.seiei.online/vr05 へ遷移。
         
         modelEl.setAttribute('position', '0 -2.4 -3');
         modelEl.setAttribute('animation-mixer', {
-          clip: 'anime07',
+          clip: 'anime05',
           loop: 'true',
           timeScale: '1',
           clampWhenFinished: 'true'
@@ -114,23 +114,23 @@ anime04再生後、https://2025.seiei.online/vr05 へ遷移。
 
         
         setTimeout(function() {
-          console.log('BGM再生開始から4秒後にanime03開始');
+          console.log('BGM再生開始から4秒後にanime06開始');
             modelEl.setAttribute('animation-mixer', {
-              clip: 'anime03',
+              clip: 'anime06',
               loop: 'false',
               repetitions: '3',
               timeScale: '1',
               clampWhenFinished: 'true'
             });
             sound3El.components.sound.playSound();
-            modelEl.setAttribute('rotation', '0 -20 0');
+            modelEl.setAttribute('rotation', '0 0 0');
 
             // sound03を17.5秒再生後、anime04を2回再生しながらsound04再生
             setTimeout(function () {
               sound3El.components.sound.stopSound();
-              console.log('anime04開始（2回繰り返し＆sound04再生）');
+              console.log('anime07開始（2回繰り返し＆sound04再生）');
               modelEl.setAttribute('animation-mixer', {
-                clip: 'anime04',
+                clip: 'anime07',
                 loop: 'false',
                 repetitions: '2', 
                 timeScale: '1',
@@ -139,10 +139,10 @@ anime04再生後、https://2025.seiei.online/vr05 へ遷移。
               modelEl.setAttribute('rotation', '0 0 0');
               sound4El.components.sound.playSound();
 
-              // anime04(2回分)終了後に自動的にページ遷移
+              // anime07(2回分)終了後に自動的にページ遷移
               setTimeout(function () {
                 window.location.href = '../vr12/';
-              }, 3167 * 2 + 1500); // anime04(2回分 + 1.5秒　)
+              }, 3200 * 2 + 1500); // anime07(2回分 + 1.5秒　)
             }, 12100); // sound03の再生時間
         }, 4966); // BGM4秒後
       }
